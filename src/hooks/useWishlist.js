@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 const useWishlist = () => {
   const [wishlist, setWishlist] = useState(() => {
@@ -21,16 +22,18 @@ const useWishlist = () => {
 
   const addToWishlist = (product) => {
     if (!product || !product.id) {
-      console.warn("Invalid product data provided.");
+      toast.error("Invalid product data!");
       return { success: false, message: "Invalid product data" };
     }
 
     const isAlreadyExist = wishlist.some((item) => item.id === product.id);
     if (isAlreadyExist) {
+      toast.error(`${product.name} is already in your wishlist!`);
       return { success: false, message: "Product already in wishlist" };
     }
 
     setWishlist((prevWishlist) => [...prevWishlist, product]);
+    toast.success(`${product.name} added to wishlist! 💖`);
     return { success: true, message: "Product added successfully" };
   };
 
@@ -39,10 +42,12 @@ const useWishlist = () => {
     setWishlist((prevWishlist) =>
       prevWishlist.filter((item) => item.id !== productId),
     );
+    toast.success("Product removed from wishlist!");
   };
 
   const clearWishlist = () => {
     setWishlist([]);
+    toast.success("Wishlist cleared!");
   };
 
   return {

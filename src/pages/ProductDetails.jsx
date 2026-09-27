@@ -1,6 +1,7 @@
 import { useParams } from "react-router";
 import useProducts from "../hooks/useProducts";
 import useWishlist from "../hooks/useWishlist";
+import toast from "react-hot-toast";
 
 const ProductDetails = () => {
   const params = useParams();
