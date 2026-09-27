@@ -1,15 +1,21 @@
 import { useParams } from "react-router";
 import useProducts from "../hooks/useProducts";
+import useWishlist from "../hooks/useWishlist";
 
 const ProductDetails = () => {
   const params = useParams();
   const id = parseInt(params.id);
   const { products } = useProducts();
+  const { addToWishlist } = useWishlist();
 
   const productData = products.find((product) => product.id === id);
   if (!productData) {
     return <p>Loading...</p>;
   }
+
+  const handleSetWishlist = (product) => {
+    addToWishlist(product);
+  };
 
   return (
     <>
@@ -50,7 +56,10 @@ const ProductDetails = () => {
                 Size: {productData.dimensions}
               </div>
               <div className="mt-6">
-                <button className="btn btn-primary btn-block btn-outline">
+                <button
+                  onClick={() => handleSetWishlist(productData)}
+                  className="btn btn-primary btn-block btn-outline"
+                >
                   Add to Wishlist
                 </button>
               </div>
