@@ -26,7 +26,7 @@ const router = createBrowserRouter([
         Component: Wishlist,
       },
       {
-        path: "product-details",
+        path: "product/:id",
         Component: ProductDetails,
       },
     ],

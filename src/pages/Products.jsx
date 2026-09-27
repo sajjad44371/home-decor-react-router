@@ -15,7 +15,12 @@ const Products = () => {
     <>
       <div>
         <div className="flex justify-between items-center pt-10">
-          <h2 className="text-3xl font-semibold">All Products</h2>
+          <h2 className="text-3xl font-semibold">
+            All Products{" "}
+            <span className="text-sm">
+              ({searchedProducts.length} Products Found)
+            </span>
+          </h2>
           <div>
             <label className="input">
               <svg
