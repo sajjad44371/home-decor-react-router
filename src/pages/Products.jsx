@@ -1,9 +1,10 @@
 import { useState } from "react";
 import ProductCard from "../components/ProductCard";
 import useProducts from "../hooks/useProducts";
+import Loader from "../components/Loader";
 
 const Products = () => {
-  const { products } = useProducts();
+  const { products, loading } = useProducts();
   const [search, setSearch] = useState("");
 
   const term = search.trim().toLowerCase();
@@ -49,11 +50,15 @@ const Products = () => {
             </label>
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 py-10">
-          {searchedProducts.map((product) => (
-            <ProductCard key={product.id} product={product}></ProductCard>
-          ))}
-        </div>
+        {loading ? (
+          <Loader></Loader>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 py-10">
+            {searchedProducts.map((product) => (
+              <ProductCard key={product.id} product={product}></ProductCard>
+            ))}
+          </div>
+        )}
       </div>
     </>
   );

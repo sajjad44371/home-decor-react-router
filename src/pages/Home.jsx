@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import ProductCard from "../components/ProductCard";
 import useProducts from "../hooks/useProducts";
+import Loader from "../components/Loader";
 
 const Home = () => {
   const { products, loading, error } = useProducts();
@@ -15,11 +16,15 @@ const Home = () => {
             See All Products
           </Link>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 py-10">
-          {featuredProducts.map((product) => (
-            <ProductCard key={product.id} product={product}></ProductCard>
-          ))}
-        </div>
+        {loading ? (
+          <Loader></Loader>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 py-10">
+            {featuredProducts.map((product) => (
+              <ProductCard key={product.id} product={product}></ProductCard>
+            ))}
+          </div>
+        )}
       </div>
     </>
   );

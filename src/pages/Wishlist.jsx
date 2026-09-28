@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import Table from "../components/Table";
 import useWishlist from "../hooks/useWishlist";
 import { List, ListSortAscending, ListSortDescending } from "lucide-react";
+import Chart from "../components/Chart";
 
 const Wishlist = () => {
   const { wishlist, removeFromWishlist, clearWishlist } = useWishlist();
@@ -77,6 +78,12 @@ const Wishlist = () => {
               ></Table>
             ))}
           </table>
+        </div>
+      </div>
+      <div className="mt-5">
+        <h2 className="text-xl">Wishlist Summary</h2>
+        <div className="rounded-xl p-5">
+          <Chart></Chart>
         </div>
       </div>
     </>

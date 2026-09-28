@@ -1,5 +1,5 @@
 const Table = ({ product, removeFromWishlist }) => {
-  const { name, image, price, id } = product;
+  const { name, image, price, id, category } = product;
 
   const handleRemoveWishlist = (id) => {
     removeFromWishlist(id);
@@ -10,9 +10,9 @@ const Table = ({ product, removeFromWishlist }) => {
       <tbody>
         <tr>
           <td>
-            <div className="flex items-center gap-3">
+            <div className="flex flex-col items-start gap-3">
               <div className="font-bold">{name}</div>
-              <div></div>
+              <div className="badge">{category}</div>
             </div>
           </td>
           <td>
